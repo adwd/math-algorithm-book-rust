@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 mod ch02;
 mod ch03;
 
