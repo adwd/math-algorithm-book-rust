@@ -9,13 +9,13 @@ use proconio::input;
 fn main() {
     input! {
         n: usize,
-        a: [u32; n],
+        a: [u64; n],
     }
 
     println!("{}", solve(a));
 }
 
-fn solve(a: Vec<u32>) -> u32 {
+fn solve(a: Vec<u64>) -> u64 {
     // 3種類の色ごとの枚数を調べ、xC2を計算して足す
     let mut n1 = 0;
     let mut n2 = 0;
@@ -32,7 +32,7 @@ fn solve(a: Vec<u32>) -> u32 {
     c2(n1) + c2(n2) + c2(n3)
 }
 
-fn c2(n: u32) -> u32 {
+fn c2(n: u64) -> u64 {
     if n < 2 {
         return 0;
     }
