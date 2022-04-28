@@ -9,7 +9,7 @@ fn main() {
     println!("{}", id_003(n, a));
 }
 
-fn id_003(n: usize, a: Vec<u32>) -> u32 {
+fn id_003(_n: usize, a: Vec<u32>) -> u32 {
     a.iter().sum()
 }
 

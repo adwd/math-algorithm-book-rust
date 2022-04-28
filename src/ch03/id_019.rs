@@ -57,9 +57,10 @@ mod tests {
             solve(std::iter::repeat(1).take(1000).collect()),
             1000 * 999 / 2
         );
+        let max = 500000_u64;
         assert_eq!(
-            solve(std::iter::repeat(1).take(500000).collect()),
-            500000 * (500000 - 1) / 2
+            solve(std::iter::repeat(1).take(max as usize).collect()),
+            max * (max - 1) / 2
         );
     }
 }

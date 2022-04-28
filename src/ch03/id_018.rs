@@ -15,7 +15,7 @@ fn main() {
     println!("{}", solve(n, a));
 }
 
-fn solve(n: usize, a: Vec<u32>) -> u32 {
+fn solve(_n: usize, a: Vec<u32>) -> u32 {
     // 100, 200, 300, 400円の商品の数をそれぞれ数え、個数を(s,t,u,v)とすると
     // sv + tu が組み合わせの数となる
     let mut s = 0;
