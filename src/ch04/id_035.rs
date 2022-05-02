@@ -72,31 +72,30 @@ impl Vector {
 }
 
 fn solve(p1: Point, r1: u64, p2: Point, r2: u64) -> u16 {
-    // p1, p2の中心間の距離と、それぞれの円の半径を比較する
-    let distance = p1.distance(&p2);
     let r1 = r1 as f64;
     let r2 = r2 as f64;
 
-    if distance == r1 {
-        if r2 * 2.0 == r1 {
-            return 2;
-        } else if r2 * 2.0 < r1 {
-            return 3;
-        } else {
-            return 1;
-        }
-    }
-    if distance == r2 {
-        if r1 * 2.0 == r2 {
-            return 2;
-        } else if r1 * 2.0 < r2 {
-            return 3;
-        } else {
-            return 1;
-        }
-    }
+    // 半径が大きい方の円をa、小さい方の円をbとする
+    let ((ap, ar), (bp, br)) = if r1 >= r2 {
+        ((p1, r1), (p2, r2))
+    } else {
+        ((p2, r2), (p1, r1))
+    };
 
-    0
+    // p1, p2の中心間の距離と、それぞれの円の半径を比較する
+    let d = ap.distance(&bp);
+
+    if d == ar + br {
+        4
+    } else if d > ar + br {
+        5
+    } else if ar == d + br {
+        2
+    } else if ar > d + br {
+        1
+    } else {
+        3
+    }
 }
 
 #[cfg(test)]
