@@ -1,3 +1,5 @@
+use std::collections::VecDeque;
+
 use proconio::derive_readable;
 use proconio::input;
 
@@ -31,8 +33,6 @@ impl Edge {
     }
 }
 
-const MAX: i32 = std::i32::MAX;
-// TODO: BFS で解く
 fn solve(n: usize, _m: usize, e: &[Edge]) -> Vec<i32> {
     // 隣接リストの作成
     let mut adj = vec![vec![]; n + 1];
@@ -41,25 +41,22 @@ fn solve(n: usize, _m: usize, e: &[Edge]) -> Vec<i32> {
         adj[edge.b].push(edge.a);
     }
 
-    let mut distance = vec![MAX; n + 1];
+    let mut dist = vec![-1; n + 1];
+    dist[1] = 0;
 
-    dfs(1, 0, &mut distance, &adj);
+    let mut q = VecDeque::new();
+    q.push_back(1);
 
-    distance.remove(0);
-    distance
-        .iter()
-        .map(|v| if *v == MAX { -1 } else { *v as i32 })
-        .collect()
-}
-
-fn dfs(pos: usize, depth: i32, distance: &mut Vec<i32>, adj: &Vec<Vec<usize>>) {
-    if distance[pos] > depth {
-        distance[pos] = depth;
-
-        for i in adj[pos].iter() {
-            dfs(*i, depth + 1, distance, adj);
+    while let Some(pos) = q.pop_front() {
+        for nex in adj[pos].iter() {
+            if dist[*nex] == -1 {
+                dist[*nex] = dist[pos] + 1;
+                q.push_back(*nex);
+            }
         }
     }
+
+    dist.into_iter().skip(1).collect()
 }
 
 #[cfg(test)]
