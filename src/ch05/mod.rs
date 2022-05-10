@@ -12,3 +12,5 @@ mod id_067;
 mod id_069;
 mod id_070;
 mod id_071;
+mod id_072;
+mod id_073;
