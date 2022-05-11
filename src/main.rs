@@ -3,6 +3,7 @@ mod ch02;
 mod ch03;
 mod ch04;
 mod ch05;
+mod final_questions;
 
 fn main() {
     println!("Hello, world!");
